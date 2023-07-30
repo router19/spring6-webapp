@@ -3,6 +3,7 @@ package com.vinikuma.spring6webapp.domain;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -15,8 +16,10 @@ public class Book {
     private Long id;
     private String title;
     private String isbn;
+
     @ManyToMany
     @JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"),
     inverseJoinColumns = @JoinColumn(name = "author_id"))
-    private Set<Author> authors;
-}
+    private Set<Author> authors = new HashSet<>();
+    @ManyToOne
+    private Publisher publisher;}
